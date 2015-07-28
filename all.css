@@ -1,0 +1,73 @@
+html,body{
+	margin:0;
+	height:100%;
+	font:14px/1.2 "Helvetica Neue",Helvetica,Tahoma,Arial,sans-serif;
+}
+header{
+	width:100%;
+	padding:80px 0 30px;
+	background:#000;
+	border-bottom: 5px solid #F47056;
+	text-align: center;
+	color:#fff;
+}
+header .site-name{
+	margin:50px 0;
+	font-size:40px;
+}
+header .summary{
+	font-size:16px;
+	color:#999;
+}
+.article-list{
+	width:740px;
+	margin:120px auto;
+}
+.article-list article{
+	position: relative;
+	padding:10px;
+	margin-bottom: 100px;
+}
+.article-list .title{
+	font-size:28px;
+}
+
+.article-list .up{
+	position: absolute;
+  top: 35px;
+  left:-60px;
+  width: 50px;
+  height: 60px;
+  border-radius: 5px;
+  background:#f96;
+  text-align:center;
+  cursor: pointer;
+}
+.article-list .up:hover{
+	background:#F47056;
+}
+.article-list .up .arrow{
+	margin: 10px auto;
+	width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 13px solid #F47056;
+}
+.article-list .up:hover .arrow{
+	border-bottom-color: #fff;
+}
+.article-list .up span{
+	color:#fff;
+}
+.article-list article img{
+	width:580px;
+}
+.article-list .content{
+	padding:10px;
+}
+.article-list p{
+	margin:10px 0;
+	color:#333;
+}
+

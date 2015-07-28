@@ -1,0 +1,83 @@
+<html>
+<head>
+	<title>rock && poetry</title>
+	<meta charset="utf-8">
+	<link href="all.css" rel="stylesheet">
+</head>
+<body>
+	<script src="http://cdn.bootcss.com/jquery/2.1.4/jquery.js"></script>
+	<script src="util.js"></script>
+	<header>
+		<h1 class="site-name">摇滚 && 诗</h1>
+		<p class="summary">When rockers quiet, they become poet.</p>
+	</header>
+	<section class="article-list">
+		<article>
+			<h2 class="title">九月</h2>
+			<div class="up">
+				<div class="arrow"></div>
+				<span>23</span>
+			</div>
+			<img alt="" src="zyp.jpg">
+			<div class="content">
+				<p>目击众神死亡的草原上野花一片</p>
+				<p>远在远方的风比远方更远</p>
+				<p>我的琴声呜咽</p>
+				<p>我的泪水全无</p>
+				<p>我把这远方的远归还草原</p>
+				<p>一个叫木头</p>
+				<p>一个叫马尾</p>
+				<p>&nbsp;</p>
+				<p>“亡我祁连山</p>
+				<p>使我牛羊不蕃息</p>
+				<p>失我胭脂山</p>
+				<p>令我妇女无颜色”</p>
+				<p>&nbsp;</p>
+				<p>远方只有在死亡中凝聚野花一片</p>
+				<p>明月如镜高悬在草原</p>
+				<p>映照千年的岁月</p>
+				<p>我的琴声呜咽</p>
+				<p>我的泪水全无</p>
+				<p>只身打马过草原</p>
+				<p>&nbsp;</p>
+				<p>（原词来自海子，有增改）</p>
+			</div>
+		</article>
+	</section>
+
+	<script>
+		util.getArticle({
+			id:2,
+			success:function(response){
+				var $container = $('.article-list'),
+					$article = $('<article></article'),
+					$title = $('<h2 class="title">'+response.title+'</h2>'),
+					$up=$('<div class="up"></div>').append($('<div class="arrow"></div>'),$('<span>'+response.vote+'</span>')),
+					$img=$('<img alt="" src="'+response.img+'">'),
+					$content=$('<div class="content"></div>');
+
+				response.content.forEach(function(item){
+					 var $p=$('<p>'+item+'</p>');
+					 $content.append($p);
+				});
+
+				$up.on('click',function(){
+					var $this=$(this);
+
+					util.upvote({
+						id:2,
+						success:function(response){
+							if(response == 'success'){
+								var $span=$this.find('span');
+								$span.text(+$span.text()+1);
+							}
+						}
+					})
+				})
+
+				$container.append($article.append($title, $up, $img, $content));
+			}
+		})
+	</script>
+</body>
+</html>
