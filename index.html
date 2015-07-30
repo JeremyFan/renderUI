@@ -5,79 +5,222 @@
 	<link href="all.css" rel="stylesheet">
 </head>
 <body>
+	<!-- 库 -->
 	<script src="http://cdn.bootcss.com/jquery/2.1.4/jquery.js"></script>
-	<script src="util.js"></script>
+	<script src="http://cdn.bootcss.com/underscore.js/1.8.3/underscore.js"></script>
+	<script src="http://cdn.bootcss.com/backbone.js/1.2.1/backbone.js"></script>
+	<script src="http://cdn.bootcss.com/angular.js/1.4.3/angular.js"></script>
+	<script src="http://cdn.bootcss.com/react/0.14.0-beta1/JSXTransformer.js"></script>
+	<script src="http://cdn.bootcss.com/react/0.14.0-beta1/react.js"></script>
+	<!-- 脚本 -->
+	<script src="scripts/util.js"></script>
+	<script src="scripts/jquery-article.js"></script>
+	<script src="scripts/backbone-article.js"></script>
+
+
 	<header>
-		<h1 class="site-name">摇滚 && 诗</h1>
+		<h1 class="site-name">七月</h1>
 		<p class="summary">When rockers quiet, they become poet.</p>
 	</header>
 	<section class="article-list">
 		<article>
-			<h2 class="title">九月</h2>
+			<h2 class="title">阳光中的向日葵</h2>
 			<div class="up">
 				<div class="arrow"></div>
-				<span>23</span>
+				<span>55</span>
 			</div>
-			<img alt="" src="zyp.jpg">
+			<img alt="" src="images/mt.jpg">
 			<div class="content">
-				<p>目击众神死亡的草原上野花一片</p>
-				<p>远在远方的风比远方更远</p>
-				<p>我的琴声呜咽</p>
-				<p>我的泪水全无</p>
-				<p>我把这远方的远归还草原</p>
-				<p>一个叫木头</p>
-				<p>一个叫马尾</p>
+				<p>你看到了吗</p>
+				<p>你看到阳光中的那棵向日葵了吗</p>
+				<p>你看它 它没有低下头</p>
+				<p>而是把头转向身后</p>
+				<p>就好象是为了一口咬断</p>
+				<p>那套在它脖子上的</p>
+				<p>那牵在太阳手中的绳索</p>
 				<p>&nbsp;</p>
-				<p>“亡我祁连山</p>
-				<p>使我牛羊不蕃息</p>
-				<p>失我胭脂山</p>
-				<p>令我妇女无颜色”</p>
+				<p>你看到它了吗</p>
+				<p>你看到那棵昂着头</p>
+				<p>怒视着太阳的向日葵了吗</p>
+				<p>它的头几乎已把太阳遮住</p>
+				<p>它的头即使是在没有太阳的时候</p>
+				<p>也依然在闪耀着光芒</p>
 				<p>&nbsp;</p>
-				<p>远方只有在死亡中凝聚野花一片</p>
-				<p>明月如镜高悬在草原</p>
-				<p>映照千年的岁月</p>
-				<p>我的琴声呜咽</p>
-				<p>我的泪水全无</p>
-				<p>只身打马过草原</p>
+				<p>你看到那棵向日葵了吗</p>
+				<p>你应该走近它</p>
+				<p>你走近它便会发现</p>
+				<p>它脚下的那片泥土</p>
+				<p>每抓起一把</p>
+				<p>都一定会攥出血来</p>
 				<p>&nbsp;</p>
-				<p>（原词来自海子，有增改）</p>
+				<p>（原词来自芒克，有改动）</p>
 			</div>
 		</article>
+
+		<article class="jquery-article"></article>
+
+		<article class="backbone-article"></article>
+
+		<article class="react-article"></article>
+
+		<!--
+		<article ng-app="article" ng-controller="ArticleCtrl">
+			<h2 class="title">{{data.title}}</h2>
+			<div class="up">
+				<div class="arrow"></div>
+				<span>{{data.vote}}</span>
+			</div>
+			<img alt="" ng-src="{{data.img}}">
+			<div class="content">
+				<p ng-repeat="item in data.content track by $index">
+					{{item}}
+				</p>
+			</div>
+		</article>
+		-->
+
 	</section>
 
-	<script>
-		util.getArticle({
-			id:2,
-			success:function(response){
-				var $container = $('.article-list'),
-					$article = $('<article></article'),
-					$title = $('<h2 class="title">'+response.title+'</h2>'),
-					$up=$('<div class="up"></div>').append($('<div class="arrow"></div>'),$('<span>'+response.vote+'</span>')),
-					$img=$('<img alt="" src="'+response.img+'">'),
-					$content=$('<div class="content"></div>');
+	<script type="text/jsx">
+		$(function(){
 
-				response.content.forEach(function(item){
-					 var $p=$('<p>'+item+'</p>');
-					 $content.append($p);
-				});
+			var Content = React.createClass({
+				render:function(text){
+					var createPara = function(text){
+						if(text)
+							result = <p>{text}</p>
+						else
+							result = <p>&nbsp;</p>
 
-				$up.on('click',function(){
-					var $this=$(this);
+						return {result}
+					}
+					return (
+						<div className="content">
+							{this.props.data.map(createPara)}
+						</div>
+					)
+				}
+			});
 
+			var Vote = React.createClass({
+
+				getInitialState:function(){
+					return {
+						data: 0
+					}
+				},
+
+				vote:function(){
+					var self=this;
 					util.upvote({
-						id:2,
+						id:this.props.id,
 						success:function(response){
 							if(response == 'success'){
-								var $span=$this.find('span');
-								$span.text(+$span.text()+1);
+								self.setState({data:self.state.data+1});
 							}
 						}
 					})
-				})
+				},
 
-				$container.append($article.append($title, $up, $img, $content));
-			}
-		})
+				render:function(){
+					return (
+						<div className="up" onClick={this.vote}>
+							<div className="arrow"></div>
+							<span>{this.state.data}</span>
+						</div>
+					)
+				},
+				/**
+				 * 组件接收到新props时调用
+				 */
+				componentWillReceiveProps:function(nextProps){
+					this.setState({data: nextProps.data});
+				}
+			});
+
+			var Article = React.createClass({
+
+				getInitialState:function(){
+					return {
+						id:0,
+						title: '',
+						vote: 0,
+						img:'',
+						content: []
+					}
+				},
+
+				render:function(){
+					return (
+						<div>
+							<h2 className="title">{this.state.title}</h2>
+							<img src={this.state.img} />
+							<Vote id={this.state.id} data={this.state.vote} />
+							<Content data={this.state.content} />
+						</div>
+					)
+				},
+
+				componentDidMount:function(){
+					var self = this;
+					util.getArticle({
+						id:3,
+						success:function(response){
+							self.setState(response);
+						}
+					})
+				}
+			});
+
+			React.render(
+				<Article />,
+				document.querySelector('.react-article')
+			)
+
+		});
 	</script>
+
+
+
+	<!-- backbone-article 模版 -->
+	<script type="text/template" id="backbone-article">
+		<h2 class="title"><%= title %></h2>
+		<div class="up">
+			<div class="arrow"></div>
+			<span><%= vote %></span>
+		</div>
+		<img alt="" src="<%= img %>">
+		<div class="content">
+			<% _.each(content, function(item){ %>
+					<p><%= item %></p>
+			<% }) %>
+		</div>
+	</script>
+
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
