@@ -1,67 +1,65 @@
-var articles = [
-	{
-		id:1,
-		title:'九月',
-		img:'images/zyp.jpg',
-		vote:23,
-		content:[
-				'目击众神死亡的草原上野花一片',
-				'远在远方的风比远方更远',
-				'我的琴声呜咽',
-				'我的泪水全无',
-				'我把这远方的远归还草原',
-				'一个叫木头',
-				'一个叫马尾',
-				'&nbsp;',
-				'&nbsp;“亡我祁连山',
-				'使我牛羊不蕃息',
-				'失我胭脂山',
-				'令我妇女无颜色”',
-				'&nbsp;',
-				'远方只有在死亡中凝聚野花一片',
-				'明月如镜高悬在草原',
-				'映照千年的岁月',
-				'我的琴声呜咽',
-				'我的泪水全无',
-				'只身打马过草原',
-				'&nbsp;',
-				'（原词来自海子，有增改）'
+var articles = [{
+		id: 1,
+		title: '九月',
+		img: 'images/zyp.jpg',
+		vote: 23,
+		content: [
+			'目击众神死亡的草原上野花一片',
+			'远在远方的风比远方更远',
+			'我的琴声呜咽',
+			'我的泪水全无',
+			'我把这远方的远归还草原',
+			'一个叫木头',
+			'一个叫马尾',
+			'&nbsp;',
+			'&nbsp;“亡我祁连山',
+			'使我牛羊不蕃息',
+			'失我胭脂山',
+			'令我妇女无颜色”',
+			'&nbsp;',
+			'远方只有在死亡中凝聚野花一片',
+			'明月如镜高悬在草原',
+			'映照千年的岁月',
+			'我的琴声呜咽',
+			'我的泪水全无',
+			'只身打马过草原',
+			'&nbsp;',
+			'（原词来自海子，有增改）'
 		]
-	},
-	{
-		id:2,
-		title:'高级动物',
-		img:'images/dw.jpg',
-		vote:43,
-		content:[
-				'矛盾 虚伪 贪婪 欺骗',
-				'好强 无奈 孤独 脆弱',
-				'忍让 气忿 复杂 讨厌',
-				'嫉妒 阴险 争夺 埋怨',
-				'自私 无聊 变态 冒险',
-				'好色 善良 博爱 诡辩',
-				'能说 空虚 真诚 金钱',
-				'&nbsp;',
-				'哦 我的天',
-				'高级动物',
-				'地狱天堂',
-				'皆在人间',
-				'&nbsp;',
-				'伟大 渺小 中庸 可怜',
-				'欢乐 痛苦 战争 平安',
-				'辉煌 暗淡 得意 伤感',
-				'怀恨 报复 专横 责难',
-				'&nbsp;',
-				'幸福在哪里'
+	}, {
+		id: 2,
+		title: '高级动物',
+		img: 'images/dw.jpg',
+		vote: 43,
+		content: [
+			'矛盾 虚伪 贪婪 欺骗',
+			'好强 无奈 孤独 脆弱',
+			'忍让 气忿 复杂 讨厌',
+			'嫉妒 阴险 争夺 埋怨',
+			'自私 无聊 变态 冒险',
+			'好色 善良 博爱 诡辩',
+			'能说 空虚 真诚 金钱',
+			'&nbsp;',
+			'哦 我的天',
+			'高级动物',
+			'地狱天堂',
+			'皆在人间',
+			'&nbsp;',
+			'伟大 渺小 中庸 可怜',
+			'欢乐 痛苦 战争 平安',
+			'辉煌 暗淡 得意 伤感',
+			'怀恨 报复 专横 责难',
+			'&nbsp;',
+			'幸福在哪里'
 		]
 	},
 
 	{
-		id:3,
-		title:'苦鬼',
-		img:'images/zxzz.jpg',
-		vote:89,
-		content:[
+		id: 3,
+		title: '苦鬼',
+		img: 'images/zxzz.jpg',
+		vote: 89,
+		content: [
 			'最近我一直解释自己的把戏',
 			'对一个姑娘',
 			'今天她对我说：“再见，可爱的小伙子。”',
@@ -90,11 +88,11 @@ var articles = [
 	},
 
 	{
-		id:4,
-		title:'你知道',
-		img:'images/pk14.jpg',
-		vote:1,
-		content:[
+		id: 4,
+		title: '你知道',
+		img: 'images/pk14.jpg',
+		vote: 1,
+		content: [
 			'你知道有些生命匆匆就过去',
 			'你知道有些街道永远无法向前伸展',
 			'你已经知道无数的人正走在回家的路上',
@@ -119,11 +117,11 @@ var articles = [
 	},
 
 	{
-		id:5,
-		title:'阳光中的向日葵',
-		img:'images/mt.jpg',
-		vote:55,
-		content:[
+		id: 5,
+		title: '阳光中的向日葵',
+		img: 'images/mt.jpg',
+		vote: 55,
+		content: [
 			'你看到了吗',
 			'你看到阳光中的那棵向日葵了吗',
 			'你看它 它没有低下头',
@@ -151,16 +149,16 @@ var articles = [
 	}
 ]
 
-var util={
+var util = {
 	/**
 	 * 获取文章
 	 */
-	getArticle:function(param){
-		if(param.id && typeof param.success == 'function'){
+	getArticle: function(param) {
+		if (param.id && typeof param.success == 'function') {
 			var result;
-			for(var i=0;i<=articles.length;i++){
+			for (var i = 0; i <= articles.length; i++) {
 				var article = articles[i]
-				if(param.id == article.id) {
+				if (param.id == article.id) {
 					result = article;
 					break;
 				}
@@ -176,11 +174,10 @@ var util={
 	/**
 	 * 点赞
 	 */
-	upvote:function(param){
-		setTimeout(function(){
-			if(typeof param.success == 'function')
+	upvote: function(param) {
+		setTimeout(function() {
+			if (typeof param.success == 'function')
 				param.success('success');
-		},500)
+		}, 500)
 	}
 }
-

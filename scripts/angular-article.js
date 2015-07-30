@@ -1,12 +1,12 @@
-(function(){
+(function() {
 	angular.module('article', [])
 		.controller('ArticleCtrl', ['$scope', function ArticleCtrl($scope) {
-			$scope.data = 	{
-				id:4,
-				title:'苦鬼',
-				img:'zxzz.jpg',
-				vote:89,
-				content:[
+			$scope.data = {
+				id: 4,
+				title: '苦鬼',
+				img: 'zxzz.jpg',
+				vote: 89,
+				content: [
 					'最近我一直解释自己的把戏',
 					'对一个姑娘',
 					'今天她对我说：“再见，可爱的小伙子。”',
@@ -31,5 +31,5 @@
 					'我投降在襁褓里，在出神地望着你',
 				]
 			}
-	   }]);
+		}]);
 })()

@@ -104,25 +104,27 @@
 
 			var Vote = React.createClass({
 
-				getInitialState:function(){
+				getInitialState: function() {
 					return {
 						data: 0
 					}
 				},
 
-				vote:function(){
-					var self=this;
+				vote: function() {
+					var self = this;
 					util.upvote({
-						id:this.props.id,
-						success:function(response){
-							if(response == 'success'){
-								self.setState({data:self.state.data+1});
+						id: this.props.id,
+						success: function(response) {
+							if (response == 'success') {
+								self.setState({
+									data: self.state.data + 1
+								});
 							}
 						}
 					})
 				},
 
-				render:function(){
+				render: function(){
 					return (
 						<div className="up" onClick={this.vote}>
 							<div className="arrow"></div>
@@ -133,19 +135,21 @@
 				/**
 				 * 组件接收到新props时调用
 				 */
-				componentWillReceiveProps:function(nextProps){
-					this.setState({data: nextProps.data});
+				componentWillReceiveProps: function(nextProps) {
+					this.setState({
+						data: nextProps.data
+					});
 				}
 			});
 
 			var Article = React.createClass({
 
-				getInitialState:function(){
+				getInitialState: function() {
 					return {
-						id:0,
+						id: 0,
 						title: '',
 						vote: 0,
-						img:'',
+						img: '',
 						content: []
 					}
 				},
@@ -161,11 +165,11 @@
 					)
 				},
 
-				componentDidMount:function(){
+				componentDidMount: function() {
 					var self = this;
 					util.getArticle({
-						id:3,
-						success:function(response){
+						id: 3,
+						success: function(response) {
 							self.setState(response);
 						}
 					})

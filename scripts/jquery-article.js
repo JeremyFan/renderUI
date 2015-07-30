@@ -1,27 +1,27 @@
-$(function(){
+$(function() {
 	util.getArticle({
-		id:1,
-		success:function(response){
+		id: 1,
+		success: function(response) {
 			var $container = $('.jquery-article'),
-				$title = $('<h2 class="title">'+response.title+'</h2>'),
-				$up=$('<div class="up"></div>').append($('<div class="arrow"></div>'),$('<span>'+response.vote+'</span>')),
-				$img=$('<img alt="" src="'+response.img+'">'),
-				$content=$('<div class="content"></div>');
+				$title = $('<h2 class="title">' + response.title + '</h2>'),
+				$up = $('<div class="up"></div>').append($('<div class="arrow"></div>'), $('<span>' + response.vote + '</span>')),
+				$img = $('<img alt="" src="' + response.img + '">'),
+				$content = $('<div class="content"></div>');
 
-			response.content.forEach(function(item){
-				 var $p=$('<p>'+item+'</p>');
-				 $content.append($p);
+			response.content.forEach(function(item) {
+				var $p = $('<p>' + item + '</p>');
+				$content.append($p);
 			});
 
-			$up.on('click',function(){
-				var $this=$(this);
+			$up.on('click', function() {
+				var $this = $(this);
 
 				util.upvote({
-					id:2,
-					success:function(response){
-						if(response == 'success'){
-							var $span=$this.find('span');
-							$span.text(+$span.text()+1);
+					id: 2,
+					success: function(response) {
+						if (response == 'success') {
+							var $span = $this.find('span');
+							$span.text(+$span.text() + 1);
 						}
 					}
 				})
