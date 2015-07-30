@@ -2,8 +2,10 @@
 $(function() {
 	var ArticleView = Backbone.View.extend({
 
+		// 模版组装方法
 		template: _.template($('#backbone-article').html()),
 
+		// 绑定事件
 		events: {
 			'click .up': 'upvote'
 		},
@@ -11,13 +13,13 @@ $(function() {
 		initialize: function() {
 			this.model = new Backbone.Model;
 
+			// 监听model变化
 			this.listenTo(this.model, 'change', this.render);
 
 			this.getData();
 		},
 
 		render: function() {
-			var tpl = $('#backbone-article').html();
 			this.$el.html(this.template(this.model.toJSON()));
 
 			return this.$el;
@@ -31,6 +33,7 @@ $(function() {
 			util.getArticle({
 				id: 2,
 				success: function(response) {
+					// 设置数据
 					self.model.set(response);
 				}
 			});
@@ -40,6 +43,7 @@ $(function() {
 		 */
 		upvote: function() {
 			var self = this,
+				// id从model获取
 				id = this.model.get('id');
 			util.upvote({
 				id: id,
@@ -54,6 +58,7 @@ $(function() {
 
 	});
 
+	// 初始化一个ArticleView
 	new ArticleView({
 		el: $('.backbone-article')
 	})

@@ -83,7 +83,7 @@
 
 	<script type="text/jsx">
 		$(function(){
-
+			/* 内容 */
 			var Content = React.createClass({
 				render:function(text){
 					var createPara = function(text){
@@ -102,20 +102,24 @@
 				}
 			});
 
+			/* 点赞 */
 			var Vote = React.createClass({
-
+				/**
+				 * 设置组件初始状态
+				 */
 				getInitialState: function() {
 					return {
 						data: 0
 					}
 				},
-
+				/* 投票点击事件处理 */
 				vote: function() {
 					var self = this;
 					util.upvote({
 						id: this.props.id,
 						success: function(response) {
 							if (response == 'success') {
+								// 设置状态，自动渲染
 								self.setState({
 									data: self.state.data + 1
 								});
@@ -133,6 +137,7 @@
 					)
 				},
 				/**
+				 * 生命周期方法
 				 * 组件接收到新props时调用
 				 */
 				componentWillReceiveProps: function(nextProps) {
@@ -165,6 +170,10 @@
 					)
 				},
 
+				/*
+				 * 生命周期方法
+				 * 初始化渲染后调用一次
+				 */
 				componentDidMount: function() {
 					var self = this;
 					util.getArticle({
@@ -176,6 +185,7 @@
 				}
 			});
 
+			// 渲染组件，放入.react-article
 			React.render(
 				<Article />,
 				document.querySelector('.react-article')
